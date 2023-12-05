@@ -5,10 +5,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
@@ -41,17 +41,35 @@ fun Greeting(name: String) {
         textAlign = TextAlign.Center,
         fontSize = 36.sp
    )*/
-    Image(painter = painterResource(id = R.drawable.baseline_coffee_24),
+    /*Image(painter = painterResource(id = R.drawable.baseline_coffee_24),
         contentDescription = "$name",
         colorFilter = ColorFilter.tint(Color.Black),
         contentScale = ContentScale.Crop
-    )
+    )*/
+    /*Button(onClick = {},
+    colors = ButtonDefaults.buttonColors(
+        contentColor = Color.White,
+        backgroundColor = Color.DarkGray
+    ), enabled = true) {//to apply changes make it true
+        Text(text = "Hello")
+        Image(painter = painterResource(id = R.drawable.baseline_coffee_24),
+            colorFilter = ColorFilter.tint(Color.White),//to change the color of image
+            contentDescription = "Dummy")
+    }*/
+    TextField(value = "Hello Pranita", onValueChange = {},
+    label = { Text(text = "Enter Message")})
 }
 
 @Preview(showBackground = true, name = "First Message",showSystemUi = true)
 @Composable
 fun DefaultPreview() {
     FirstComposeTheme {
-        Greeting("Pranita")
+        //Greeting("Pranita")
+        TextInput()
     }
+}
+@Composable
+fun TextInput(){
+    val state = remember {mutableStateOf("")} //use remember to maintain last state
+    TextField(value = state.value, onValueChange = {state.value = it}, label = { Text(text = "Enter Message")} )
 }
